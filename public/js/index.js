@@ -1,47 +1,47 @@
 // Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
+var $pickUsername = $("#pickusername");
+var $pickPassword = $("#pickpassword");
 var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+var $userinfoList = $("#userinfo-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  saveUserinfo: function(userinfo) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
+      url: "api/userinfo",
+      data: JSON.stringify(userinfo)
     });
   },
-  getExamples: function() {
+  getUserinfo: function() {
     return $.ajax({
-      url: "api/examples",
+      url: "api/userinfo",
       type: "GET"
     });
   },
-  deleteExample: function(id) {
+  deleteUserinfo: function(username) {
     return $.ajax({
-      url: "api/examples/" + id,
+      url: "api/userinfo/" + username,
       type: "DELETE"
     });
   }
 };
 
 // refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
+var refreshUserinfo = function() {
+  API.getUserinfo().then(function(data) {
+    var $userinfos = data.map(function(userinfo) {
       var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+        .text(userinfo.username)
+        .attr("href", "/userinfo/" + userinfo.username);
 
       var $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": example.id
+          "data-id": userinfo.username
         })
         .append($a);
 
@@ -54,8 +54,8 @@ var refreshExamples = function() {
       return $li;
     });
 
-    $exampleList.empty();
-    $exampleList.append($examples);
+    $userinfoList.empty();
+    $userinfoList.append($userinfos);
   });
 };
 
@@ -64,22 +64,22 @@ var refreshExamples = function() {
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+  var newUser = {
+    username: $pickUsername.val().trim(),
+    password: $pickPassword.val().trim()
   };
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
+  if (!(newUser.username && newUser.password)) {
+    alert("You must enter all fields!");
     return;
   }
 
-  API.saveExample(example).then(function() {
-    refreshExamples();
+  API.saveUserinfo(newUser).then(function() {
+    refreshUserinfo();
   });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
+  $pickUsername.val("");
+  $pickPassword.val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
@@ -89,11 +89,11 @@ var handleDeleteBtnClick = function() {
     .parent()
     .attr("data-id");
 
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
+  API.deleteUserinfo(idToDelete).then(function() {
+    refreshUserinfo();
   });
 };
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+$userinfoList.on("click", ".delete", handleDeleteBtnClick);
