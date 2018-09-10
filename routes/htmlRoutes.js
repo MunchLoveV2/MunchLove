@@ -12,7 +12,12 @@ module.exports = function(app) {
   });
   // load login page
   app.get("/login", function(req, res) {
-    res.render("login");
+    db.Userinfo.findAll({}).then(function(dbUserinfos) {
+      res.render("login", {
+        msg: "Login Fellow Muncher!",
+        userinfos: dbUserinfos
+      });
+    });
   });
   // load about us
   app.get("/aboutus", function(req, res) {
