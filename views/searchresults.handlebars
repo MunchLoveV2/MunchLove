@@ -1,0 +1,33 @@
+<div id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 offset-2">
+        <h1>{{msg}}</h1>
+        <h2>Sign up to Join the Munchers</h2>
+        <form class="clearfix mb-4" action="POST">
+          <div class="form-group">
+            <label for="pickusername">Choose a Username</label>
+            <input type="text" id="pickusername" class="form-control" aria-describedby="pickusername" placeholder="Enter username">
+          </div>
+          <div class="form-group">
+            <label for="password">Choose a Password</label>
+            <input type="text" id="pickpassword" class="form-control" aria-describedby="pickpassword" placeholder="Enter a password">
+          </div>
+          <button id="submit" class="btn btn-primary float-right">Submit</button>
+        </form>
+        <h3>Users:</h3>
+        <ul id="userinfo-list" class="list-group">
+          {{#each userinfos}}
+          <li data-id="{{this.id}}" class="list-group-item">
+            <a href="userinfo/{{this.username}}">{{this.username}}</a>
+            <button class="btn btn-danger float-right delete">ｘ</button>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
