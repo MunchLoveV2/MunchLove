@@ -22,7 +22,8 @@
         <h3>Recent Munchers:</h3>
         <ul id="userinfo-list" class="list-group">
           {{#each userinfos}}
-          <li data-id="{{this.id}}" class="list-group-item">
+          <li data-id="{{this.username}}" class="list-group-item">
+            {{!-- We wont need this to link... but it will be good template for later maybe --}}
             <a href="userinfo/{{this.username}}">{{this.username}}</a>
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>

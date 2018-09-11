@@ -3,6 +3,7 @@ var $pickUsername = $("#pickusername");
 var $pickPassword = $("#pickpassword");
 var $submitBtn = $("#submit");
 var $userinfoList = $("#userinfo-list");
+var $emailAddress = $("#emailaddress");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -66,10 +67,11 @@ var handleFormSubmit = function(event) {
 
   var newUser = {
     username: $pickUsername.val().trim(),
-    password: $pickPassword.val().trim()
+    password: $pickPassword.val().trim(),
+    email: $emailAddress.val().trim()
   };
 
-  if (!(newUser.username && newUser.password)) {
+  if (!(newUser.username && newUser.password && newUser.email)) {
     alert("You must enter all fields!");
     return;
   }
@@ -80,11 +82,13 @@ var handleFormSubmit = function(event) {
 
   $pickUsername.val("");
   $pickPassword.val("");
+  $emailAddress.val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
+var handleDeleteBtnClick = function(event) {
+  event.preventDefault();
   var idToDelete = $(this)
     .parent()
     .attr("data-id");

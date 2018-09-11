@@ -15,9 +15,9 @@ module.exports = function(app) {
     });
   });
 
-  // Delete an example by id
-  app.delete("/api/userinfo/:id", function(req, res) {
-    db.Userinfo.destroy({ where: { id: req.params.id } }).then(function(dbUserinfos) {
+  // Delete an example by username
+  app.delete("/api/userinfo/:username", function(req, res) {
+    db.Userinfo.destroy({ where: { username: req.params.username } }).then(function(dbUserinfos) {
       res.json(dbUserinfos);
     });
   });

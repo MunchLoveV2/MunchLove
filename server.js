@@ -3,6 +3,9 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 
+// Password auth stuffs
+
+
 var db = require("./models");
 
 var app = express();
