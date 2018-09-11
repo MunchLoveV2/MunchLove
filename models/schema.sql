@@ -7,6 +7,7 @@ CREATE DATABASE testdb;
 USE exampledb;
 CREATE TABLE IF NOT EXISTS 'userinfo' {
     'username' VARCHAR (255),
+    -- 'salt' VARCHAR (255),
     'password' VARCHAR (255),
     'created_at' DATETIME NOT NULL,
     PRIMARY KEY ('username')
@@ -17,5 +18,13 @@ CREATE TABLE IF NOT EXISTS 'userfavorite' {
     'username' VARCHAR (255),
     'favorite' VARCHAR (255),
     'created_at' DATETIME NOT NULL,
-    PRIMARY KEY ('username')
+    PRIMARY KEY ('username');
+};
+
+CREATE TABLE IF NOT EXISTS 'chatinfo' {
+    `id` INTEGER NOT NULL auto_increment,
+    'username' VARCHAR (255),
+    'message' VARCHAR (255),
+    'yelp_link' DATETIME NOT NULL,
+    PRIMARY KEY ('username');
 }
