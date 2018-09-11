@@ -7,7 +7,7 @@ CREATE DATABASE testdb;
 USE exampledb;
 CREATE TABLE IF NOT EXISTS 'userinfo' {
     'username' VARCHAR (255),
-    'salt' VARCHAR (255),
+    -- 'salt' VARCHAR (255),
     'password' VARCHAR (255),
     'created_at' DATETIME NOT NULL,
     PRIMARY KEY ('username')
