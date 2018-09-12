@@ -6,7 +6,6 @@ var exphbs = require("express-handlebars");
 // Password auth stuffs
 var passport = require("passport");
 var flash = require("connect-flash");
-var cookieParser = require("cookie-parser");
 var session = require("express-session");
 
 var db = require("./models");

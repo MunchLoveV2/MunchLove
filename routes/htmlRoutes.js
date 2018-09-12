@@ -46,7 +46,7 @@ module.exports = function(app) {
     if (req.isAuthenticated()) {
       db.Userinfos.findOne({
         where: {
-          uuid: req.session.passport.user
+          id: req.session.passport.id
         }
       }).then(function(dbUserinfos) {
         var user = {
@@ -57,11 +57,7 @@ module.exports = function(app) {
         res.render("profile", user);
       });
     } else {
-      var user = {
-        id: null,
-        isloggedin: req.isAuthenticated()
-      };
-      res.redirect("/");
+        res.redirect("/");
     }
   });
 
@@ -115,14 +111,14 @@ module.exports = function(app) {
       }
       console.log("redirecting....");
       res.cookie("username", user.username);
-      res.cookie("user_id", user.uuid );
+      res.cookie("user_id", user.id );
     return res.redirect("/profile");
     });      
     })(req, res, next);
   });
 
   app.post('/login', function(req, res, next) {
-    passport.authenticate('local-login', function(err, user, info) {
+    passport.authenticate('local-login', function(err, user) {
       console.log("\n\n\n########userrrr", user)
       if (err) {
         console.log("passport err", err);
