@@ -17,8 +17,10 @@ module.exports = function(app) {
 
   // Delete an example by username
   app.delete("/api/userinfo/:username", function(req, res) {
-    db.Userinfo.destroy({ where: { username: req.params.username } }).then(function(dbUserinfos) {
-      res.json(dbUserinfos);
-    });
+    db.Userinfo.destroy({ where: { username: req.params.username } }).then(
+      function(dbUserinfos) {
+        res.json(dbUserinfos);
+      }
+    );
   });
 };

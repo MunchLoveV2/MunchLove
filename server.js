@@ -4,7 +4,10 @@ var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 
 // Password auth stuffs
-
+var passport = require("passport");
+var flash = require("connect-flash");
+var cookieParser = require("cookie-parser");
+var session = require("express-session");
 
 var db = require("./models");
 
@@ -12,7 +15,7 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
@@ -24,6 +27,29 @@ app.engine(
   })
 );
 app.set("view engine", "handlebars");
+
+// passport password auth stuff
+app.use(
+  session({
+    key: "userid",
+    secret: "goN6DJJC6E287cC77kkdYuNuAyWnz7Q3iZj8",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      expires: 600000
+    }
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+require("./controllers/html-routes")(app, passport);
+require("./controllers/account-controller")(app, passport);
+require("./controllers/item-controller")(app, passport);
+require("./controllers/search-controller")(app, passport);
+require("./controllers/transactions-controller")(app, passport);
 
 // Routes
 require("./routes/apiRoutes")(app);
