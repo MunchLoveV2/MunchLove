@@ -6,6 +6,8 @@ var $userinfoList = $("#userinfo-list");
 var $emailAddress = $("#emailaddress");
 
 // The API object contains methods for each kind of request we'll make
+// atm shouldn't need the delete method or buttons!
+// Will keep them anyways for the favorites page later
 var API = {
   saveUserinfo: function(userinfo) {
     return $.ajax({

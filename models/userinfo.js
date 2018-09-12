@@ -1,9 +1,10 @@
+var bcrypt = require("bcrypt");
+
 module.exports = function(sequelize, DataTypes) {
   var Userinfos = sequelize.define("Userinfos", {
-    uuid: {
+    id: {
       primaryKey: true,
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV1,
+      type: DataTypes.INTEGER,
       isUnique: true
     },
     username: {
@@ -20,13 +21,19 @@ module.exports = function(sequelize, DataTypes) {
         len: [8]
       }
     },
-    createdAt: DataTypes.DATE
+    email: {
+      type: DataTypes.TEXT
+    },
+    createdAt: {
+      type: DataTypes.DATE
+    }
   });
   // generating a hash
   Userinfos.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
   };
   // checking if password is valid
+  // I dont know what this exactly does....
   Userinfos.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.accountKey);
   };
