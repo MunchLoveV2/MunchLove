@@ -26,7 +26,8 @@ if (config.use_env_variable) {
 fs.readdirSync(__dirname)
   .filter(function(file) {
     return (
-      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
+      file.indexOf(".") !== 0 && file !== basename &&
+          file.slice(-3) === ".js" && file !== "passport.js"
     );
   })
   .forEach(function(file) {
@@ -35,6 +36,7 @@ fs.readdirSync(__dirname)
   });
 
 Object.keys(db).forEach(function(modelName) {
+  console.log('>>>>>>>>>', modelName, db);
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }

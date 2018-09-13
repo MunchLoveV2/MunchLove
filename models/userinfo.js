@@ -1,7 +1,7 @@
 var bcrypt = require("bcrypt");
 
 module.exports = function(sequelize, DataTypes) {
-  var Userinfos = sequelize.define("Userinfos", {
+  var Userinfo = sequelize.define("Userinfos", {
     id: {
       primaryKey: true,
       type: DataTypes.INTEGER,
@@ -29,24 +29,24 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
   // generating a hash
-  Userinfos.generateHash = function(password) {
+  Userinfo.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
   };
   // checking if password is valid
   // I dont know what this exactly does....
-  Userinfos.prototype.validPassword = function(password) {
+  Userinfo.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.accountKey);
   };
-  Userinfos.associate = function(models) {
-    Userinfos.hasMany(models.Items, {
+  Userinfo.associate = function(models) {
+    Userinfo.hasMany(models.Items, {
       foreignKey: "owner_id",
       onDelete: "cascade"
     });
-    Userinfos.associate = function(models) {
-      Userinfos.hasMany(models.Transactions, {
+    Userinfo.associate = function(models) {
+      Userinfo.hasMany(models.Transactions, {
         foreignKey: "renter_id"
       });
     };
   };
-  return Userinfos;
+  return Userinfo;
 };
