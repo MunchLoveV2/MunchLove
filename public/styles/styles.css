@@ -1,6 +1,6 @@
 body {
   background-color: rgb(206, 232, 245);
-  background-image: url("../images/bg.jpg"); 
+  background-image: url("../images/bg.jpg""); 
   background-size: 100%; 
   background-repeat: no-repeat;
   background-size: cover;
@@ -10,10 +10,16 @@ body {
 }
 
 .navbar {
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.8);
   padding-bottom: 0px; 
   padding-top: 0px;
 }
+
+@media screen and (min-width:768px) {
+    nav {
+    max-height: 120px;
+  }
+  }
 
 .brand {
   /* font-family: 'Sacramento', cursive; */
@@ -22,11 +28,11 @@ body {
   font-size: 6em;
   color: white;
   transform: scale(1, 1);
-  
+  padding: 0px 30px 0px 30px;
 }
 
-.navbar-toggler-icon {
-  color: white;
+.nav-item{
+  margin:15px;
 }
 
 .nav-link {
@@ -38,18 +44,15 @@ body {
   float: right;
 }
 
-.divider {
-  position: absolute;
-  right:-1px;
-  top:2px;
+.foot-link {
+  font-family: 'Amatic SC', cursive;
+  font-size: 150%;
+  color: white;
 }
 
-.logo img {
-  width: 15%;
-  height: 15%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.logo  {
+  width: 5em;
+  height: 5em;
 }
 
 #search {		
@@ -59,5 +62,17 @@ body {
 #searchbutton {	
   display: block;	
   margin-left: auto;
-  margin-right: auto;
+    margin-right: auto;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background: rgba(0,0,0,0.7);
+}
+
+.homesearch {
+  margin-top: 10em;
 }
