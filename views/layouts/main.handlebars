@@ -12,4 +12,14 @@
   {{{body}}}
 </body>
 
+<script type="text/javascript">
+
+  $("#searchbutton").click(function(){
+    event.preventDefault(); 
+    window.location='/searchresults/' + $("#search").val();
+    
+ })
+
+</script>
+
 </html>
