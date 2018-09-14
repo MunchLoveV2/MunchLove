@@ -69,11 +69,11 @@ var handleFormSubmit = function(event) {
 
   var newUser = {
     username: $pickUsername.val().trim(),
-    password: $pickPassword.val().trim(),
+    accountKey: $pickPassword.val().trim(),
     email: $emailAddress.val().trim()
   };
 
-  if (!(newUser.username && newUser.password && newUser.email)) {
+  if (!(newUser.username && newUser.accountKey && newUser.email)) {
     alert("You must enter all fields!");
     return;
   }

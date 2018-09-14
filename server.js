@@ -30,7 +30,7 @@ app.set("view engine", "handlebars");
 // passport password auth stuff
 app.use(
   session({
-    key: "userid",
+    key: "id",
     secret: "goN6DJJC6E287cC77kkdYuNuAyWnz7Q3iZj8",
     resave: false,
     saveUninitialized: false,
@@ -44,11 +44,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-require("./controllers/html-routes")(app, passport);
-require("./controllers/account-controller")(app, passport);
-require("./controllers/item-controller")(app, passport);
-require("./controllers/search-controller")(app, passport);
-require("./controllers/transactions-controller")(app, passport);
+// require("./controllers/html-routes")(app, passport);
+// require("./controllers/account-controller")(app, passport);
+// require("./controllers/item-controller")(app, passport);
+// require("./controllers/search-controller")(app, passport);
+// require("./controllers/transactions-controller")(app, passport);
 
 // Routes
 require("./routes/apiRoutes")(app);

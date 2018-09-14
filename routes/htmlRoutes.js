@@ -3,13 +3,12 @@ var db = require("../models");
 module.exports = function(app) {
   // load login page
   app.get("/login", function(req, res) {
-    db.Userinfo.findAll({}).then(function(dbUserinfos) {
       res.render("login", {
         msg: "Login Fellow Muncher!",
-        userinfos: dbUserinfos
+        userinfos: db.userinfo
       });
     });
-  });
+
   // load about us
   app.get("/aboutus", function(req, res) {
     res.render("aboutus");
@@ -65,14 +64,12 @@ module.exports = function(app) {
     if (req.isAuthenticated()) {
       res.redirect("/profile");
     } else {
-      db.Userinfo.findAll({}).then(function(dbUserinfos) {
         res.render("signup", {
           msg: "Join the MunchLovers!",
-          userinfos: dbUserinfos
+          userinfos: db.userinfo
         });
-      });
-    }
-  });
+      };
+    });
 
   app.get("/favorites", function(req, res) {
     if (req.isAuthenticated()) {

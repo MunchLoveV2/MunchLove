@@ -48,6 +48,7 @@ module.exports = function() {
                 req.flash("signupMessage", "That username is already taken.")
               );
             } else {
+              console.log(">>>>>>>>", db.userinfos);
               db.Userinfos.create({
                 username: req.body.username,
                 email: req.body.email,

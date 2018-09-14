@@ -5,8 +5,9 @@ DROP DATABASE IF EXISTS testdb;
 CREATE DATABASE testdb;
 
 USE exampledb;
-CREATE TABLE IF NOT EXISTS 'userinfo' {
-    `id` INTEGER NOT NULL auto_increment,
+DROP TABLE IF EXISTS 'userinfos';
+CREATE TABLE 'userinfos' {
+    `id` INTEGER auto_increment,
     'username' VARCHAR NOT NULL(255),
     'accountKey' VARCHAR NOT NULL(255),
     'email' VARCHAR NOT NULL (255),
