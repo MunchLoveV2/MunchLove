@@ -4,6 +4,7 @@ var $pickPassword = $("#pickpassword");
 var $submitBtn = $("#submit");
 var $userinfoList = $("#userinfo-list");
 var $emailAddress = $("#emailaddress");
+// var db = require("../models");
 
 // The API object contains methods for each kind of request we'll make
 // atm shouldn't need the delete method or buttons!
@@ -66,17 +67,25 @@ var refreshUserinfo = function() {
 // Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
-
   var newUser = {
     username: $pickUsername.val().trim(),
     accountKey: $pickPassword.val().trim(),
     email: $emailAddress.val().trim()
   };
-
+  console.log(">>>>>>>>>>>>HELLO", newUser);
   if (!(newUser.username && newUser.accountKey && newUser.email)) {
     alert("You must enter all fields!");
     return;
   }
+
+  // // how to link to passport?
+  // db.passport
+  //   .use("local-signup", function(newUser) {
+  //     newUser.use("local-signup");
+  //   })
+  //   .then(function() {
+  //     refreshUserinfo();
+  //   });
 
   API.saveUserinfo(newUser).then(function() {
     refreshUserinfo();

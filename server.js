@@ -16,7 +16,7 @@ var PORT = process.env.PORT || 3000;
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static("public"));
+// app.use(express.static("public"));
 
 // Handlebars
 app.engine(
@@ -30,13 +30,13 @@ app.set("view engine", "handlebars");
 // passport password auth stuff
 app.use(
   session({
-    key: "id",
+    // key: "id",
     secret: "goN6DJJC6E287cC77kkdYuNuAyWnz7Q3iZj8",
     resave: false,
-    saveUninitialized: false,
-    cookie: {
-      expires: 600000
-    }
+    saveUninitialized: false
+    // cookie: {
+    //   expires: 600000
+    // }
   })
 );
 
@@ -53,6 +53,10 @@ app.use(flash());
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
+require("./routes/authRoutes.js")(app, passport);
+
+// requiring passport strategy
+require("./config/passport.js")(passport, "./models/userinfo");
 
 var syncOptions = { force: false };
 

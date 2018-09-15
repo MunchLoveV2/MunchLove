@@ -17,16 +17,17 @@ CREATE TABLE 'userinfos' {
 
 CREATE TABLE IF NOT EXISTS 'userfavorite' {
     `id` INTEGER NOT NULL auto_increment,
-    'username' VARCHAR (255),
     'favorite' VARCHAR (255),
+    'foreignKey' INTEGER (255),
     'created_at' DATETIME NOT NULL,
-    PRIMARY KEY ('username');
-};
-
-CREATE TABLE IF NOT EXISTS 'chatinfo' {
-    `id` INTEGER NOT NULL auto_increment,
     'username' VARCHAR (255),
-    'message' VARCHAR (255),
-    'yelp_link' DATETIME NOT NULL,
-    PRIMARY KEY ('username');
+    PRIMARY KEY ('id');
 }
+
+-- CREATE TABLE IF NOT EXISTS 'chatinfo' {
+--     `id` INTEGER NOT NULL auto_increment,
+--     'username' VARCHAR (255),
+--     'message' VARCHAR (255),
+--     'yelp_link' DATETIME NOT NULL,
+--     PRIMARY KEY ('username');
+-- }
