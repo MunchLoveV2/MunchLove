@@ -13,6 +13,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
+app.use("/css", express.static(__dirname + "/public/styles/styles.css"));
+
 // Handlebars
 app.engine(
   "handlebars",
