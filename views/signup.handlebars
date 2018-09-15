@@ -1,5 +1,5 @@
 <nav class="navbar fixed-top navbar-dark navbar-expand-md shadow-lg ">
-  <img class="logo img-responsive" src="./trans3.png">
+  <img class="logo img-responsive" src="../images/trans3.png">
   <a class="navbar-brand brand" href="#">Munch</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -19,11 +19,11 @@
   </div>
 </nav>
 <div id="home">
-  <div class="container">
+  <div class="container opacity">
     <div class="row">
       <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>Already a Muncher? <a href="/login">Log In</a></h2>
+        <h1 class="pageTitle">{{msg}}</h1>
+        <h2 class="">Already a Muncher? <a href="/login">Log In</a></h2>
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
             <label for="pickusername">Choose a Username</label>
@@ -147,6 +147,18 @@
 
   #home {
     margin-top: 150px;
+  }
+
+  
+  .opacity {
+    background: rgba(0,0,0,0.7);
+    color: white;
+    font-family: 'Amatic SC', cursive;
+    font-size: 2em;
+  }
+
+  .pageTitle {
+    font-size: 2em;
   }
 
 </style>
