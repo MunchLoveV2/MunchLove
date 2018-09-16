@@ -2,7 +2,7 @@ require("dotenv").config();
 var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
-
+var userinfoDB = require("./models/userinfo");
 // Password auth stuffs
 var passport = require("passport");
 var flash = require("connect-flash");
@@ -50,13 +50,15 @@ app.use(flash());
 // require("./controllers/search-controller")(app, passport);
 // require("./controllers/transactions-controller")(app, passport);
 
+// requiring passport strategy
+require("./config/passport.js")(passport, userinfoDB);
+
 // Routes
 require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
-require("./routes/authRoutes.js")(app, passport);
+require("./routes/htmlRoutes")(app, passport);
+// require("./routes/authRoutes.js")(app, passport);
 
-// requiring passport strategy
-require("./config/passport.js")(passport, "./models/userinfo");
+
 
 var syncOptions = { force: false };
 

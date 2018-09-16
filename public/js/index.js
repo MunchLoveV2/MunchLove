@@ -1,114 +1,114 @@
-// Get references to page elements
-var $pickUsername = $("#pickusername");
-var $pickPassword = $("#pickpassword");
-var $submitBtn = $("#submit");
-var $userinfoList = $("#userinfo-list");
-var $emailAddress = $("#emailaddress");
-// var db = require("../models");
+// // Get references to page elements
+// var $pickUsername = $("#pickusername");
+// var $pickPassword = $("#pickpassword");
+// var $submitBtn = $("#submit");
+// var $userinfoList = $("#userinfo-list");
+// var $emailAddress = $("#emailaddress");
+// // var db = require("../models");
 
-// The API object contains methods for each kind of request we'll make
-// atm shouldn't need the delete method or buttons!
-// Will keep them anyways for the favorites page later
-var API = {
-  saveUserinfo: function(userinfo) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/userinfo",
-      data: JSON.stringify(userinfo)
-    });
-  },
-  getUserinfo: function() {
-    return $.ajax({
-      url: "api/userinfo",
-      type: "GET"
-    });
-  },
-  deleteUserinfo: function(username) {
-    return $.ajax({
-      url: "api/userinfo/" + username,
-      type: "DELETE"
-    });
-  }
-};
+// // The API object contains methods for each kind of request we'll make
+// // atm shouldn't need the delete method or buttons!
+// // Will keep them anyways for the favorites page later
+// var API = {
+//   saveUserinfo: function(userinfo) {
+//     return $.ajax({
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       type: "POST",
+//       url: "api/userinfo",
+//       data: JSON.stringify(userinfo)
+//     });
+//   },
+//   getUserinfo: function() {
+//     return $.ajax({
+//       url: "api/userinfo",
+//       type: "GET"
+//     });
+//   },
+//   deleteUserinfo: function(username) {
+//     return $.ajax({
+//       url: "api/userinfo/" + username,
+//       type: "DELETE"
+//     });
+//   }
+// };
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshUserinfo = function() {
-  API.getUserinfo().then(function(data) {
-    var $userinfos = data.map(function(userinfo) {
-      var $a = $("<a>")
-        .text(userinfo.username)
-        .attr("href", "/userinfo/" + userinfo.username);
+// // refreshExamples gets new examples from the db and repopulates the list
+// var refreshUserinfo = function() {
+//   API.getUserinfo().then(function(data) {
+//     var $userinfos = data.map(function(userinfo) {
+//       var $a = $("<a>")
+//         .text(userinfo.username)
+//         .attr("href", "/userinfo/" + userinfo.username);
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": userinfo.username
-        })
-        .append($a);
+//       var $li = $("<li>")
+//         .attr({
+//           class: "list-group-item",
+//           "data-id": userinfo.username
+//         })
+//         .append($a);
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+//       var $button = $("<button>")
+//         .addClass("btn btn-danger float-right delete")
+//         .text("ｘ");
 
-      $li.append($button);
+//       $li.append($button);
 
-      return $li;
-    });
+//       return $li;
+//     });
 
-    $userinfoList.empty();
-    $userinfoList.append($userinfos);
-  });
-};
+//     $userinfoList.empty();
+//     $userinfoList.append($userinfos);
+//   });
+// };
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
-  event.preventDefault();
-  var newUser = {
-    username: $pickUsername.val().trim(),
-    accountKey: $pickPassword.val().trim(),
-    email: $emailAddress.val().trim()
-  };
-  console.log(">>>>>>>>>>>>HELLO", newUser);
-  if (!(newUser.username && newUser.accountKey && newUser.email)) {
-    alert("You must enter all fields!");
-    return;
-  }
+// // handleFormSubmit is called whenever we submit a new example
+// // Save the new example to the db and refresh the list
+// var handleFormSubmit = function(event) {
+//   event.preventDefault();
+//   var newUser = {
+//     username: $pickUsername.val().trim(),
+//     accountKey: $pickPassword.val().trim(),
+//     email: $emailAddress.val().trim()
+//   };
+//   console.log(">>>>>>>>>>>>HELLO", newUser);
+//   if (!(newUser.username && newUser.accountKey && newUser.email)) {
+//     alert("You must enter all fields!");
+//     return;
+//   }
 
-  // // how to link to passport?
-  // db.passport
-  //   .use("local-signup", function(newUser) {
-  //     newUser.use("local-signup");
-  //   })
-  //   .then(function() {
-  //     refreshUserinfo();
-  //   });
+//   // // how to link to passport?
+//   // db.passport
+//   //   .use("local-signup", function(newUser) {
+//   //     newUser.use("local-signup");
+//   //   })
+//   //   .then(function() {
+//   //     refreshUserinfo();
+//   //   });
 
-  API.saveUserinfo(newUser).then(function() {
-    refreshUserinfo();
-  });
+//   API.saveUserinfo(newUser).then(function() {
+//     refreshUserinfo();
+//   });
 
-  $pickUsername.val("");
-  $pickPassword.val("");
-  $emailAddress.val("");
-};
+//   $pickUsername.val("");
+//   $pickPassword.val("");
+//   $emailAddress.val("");
+// };
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function(event) {
-  event.preventDefault();
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
+// // handleDeleteBtnClick is called when an example's delete button is clicked
+// // Remove the example from the db and refresh the list
+// var handleDeleteBtnClick = function(event) {
+//   event.preventDefault();
+//   var idToDelete = $(this)
+//     .parent()
+//     .attr("data-id");
 
-  API.deleteUserinfo(idToDelete).then(function() {
-    refreshUserinfo();
-  });
-};
+//   API.deleteUserinfo(idToDelete).then(function() {
+//     refreshUserinfo();
+//   });
+// };
 
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$userinfoList.on("click", ".delete", handleDeleteBtnClick);
+// // Add event listeners to the submit and delete buttons
+// $submitBtn.on("click", handleFormSubmit);
+// $userinfoList.on("click", ".delete", handleDeleteBtnClick);
