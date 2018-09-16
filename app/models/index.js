@@ -20,9 +20,6 @@ if (config.use_env_variable) {
     config
   );
 }
-// I WILL GET BACK TO THIS AFTER RESTROOM BREAK
-// I still dont know what this exactly does except
-// It makes sequlize work good.
 fs.readdirSync(__dirname)
   .filter(function(file) {
     return (
