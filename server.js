@@ -1,64 +1,45 @@
 require("dotenv").config();
 var express = require("express");
-var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
-var userinfoDB = require("./models/userinfo");
 // Password auth stuffs
 var passport = require("passport");
-var flash = require("connect-flash");
 var session = require("express-session");
-
-var db = require("./models");
-
+var bodyParser = require("body-parser");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// app.use(express.static("public"));
-
-// Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
-app.set("view engine", "handlebars");
 
 // passport password auth stuff
 app.use(
   session({
-    // key: "id",
     secret: "goN6DJJC6E287cC77kkdYuNuAyWnz7Q3iZj8",
-    resave: false,
+    resave: true,
     saveUninitialized: false
-    // cookie: {
-    //   expires: 600000
-    // }
   })
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
 
-// require("./controllers/html-routes")(app, passport);
-// require("./controllers/account-controller")(app, passport);
-// require("./controllers/item-controller")(app, passport);
-// require("./controllers/search-controller")(app, passport);
-// require("./controllers/transactions-controller")(app, passport);
+//For Handlebars
+app.set('views', './app/views');
+app.set('view options', { layout: 'main' });
+app.engine('hbs', exphbs({
+    extname: '.hbs'
+  })
+);
+app.set('view engine', '.hbs');
 
-// requiring passport strategy
-require("./config/passport.js")(passport, userinfoDB);
+// models
+var db = require("./app/models");
 
-// Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app, passport);
-// require("./routes/authRoutes.js")(app, passport);
+// routes
+var authRoute = require('./app/routes/auth.js')(app, passport);
 
-
+//load passport strategies
+require('./config/passport.js')(passport, db.userinfo);
 
 var syncOptions = { force: false };
 
@@ -70,13 +51,15 @@ if (process.env.NODE_ENV === "test") {
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
+  app.listen(PORT, function(err) {
+    if (!err) {
+      console.log(
+        "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+        PORT,
+        PORT
+      );
+    }else {
+      console.log (err);
+    }
   });
 });
-
-module.exports = app;
