@@ -5,6 +5,14 @@ module.exports = function(app, passport) {
   app.get("/signup", authController.signup);
   app.get("/login", authController.login);
   app.get("/aboutus", authController.aboutus);
+  // figure this out tomorrow. how to link to yelp api
+  // app.post(
+  //   "/",
+  //   YELPSOMETHINGHEREOMGWAT.search("api", {
+  //     successRedirect: "/searchresults",
+  //     failureRedirect: "/"
+  //   })
+  // );
   app.post(
     "/signup",
     passport.authenticate("local-signup", {
