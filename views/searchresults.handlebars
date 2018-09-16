@@ -19,27 +19,52 @@
   </div>
 </nav>
 
-<div class="container opacity home">
-  <div class="row">
-    <div class="col-8 offset-2">
-      <h1 class="pageTitle">{{msg}}</h1>
-      <h2 >Not a Muncher yet? <a href="/signup">Sign Up</a></h2>
-
-      <form class="clearfix mb-4" id="login" name="login" method="post" action="login">
-        <div class="form-group">
-            <label for="enterusername">Username</label>
-            <input type="text" name="username" id="username" type="username" class="form-control" aria-describedby="enterusername" placeholder="XxprincesscupcakexX">
-          </div>
+<div id="home ">
+  <div class="container opacity">
+    <div class ="row margin">
+      <div class = "col-4 offset-4 center">
+        <form class="clearfix mb-4" action="GET">
           <div class="form-group">
-            <label for="enterpassword">Password</label>
-            <input type="text" name="password" id="password" type="password" class="form-control" aria-describedby="enterpassword" placeholder="password123">
+            <input type="text" id="search" class="form-control searchSize" aria-describedby="search" placeholder="Search Another Location?">
           </div>
-          <button id="login" class="btn btn-primary float-right" value="Log In">Log In</button>
+          <button id="searchbutton" class="btn btn-primary float-center">Go!</button>
         </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="https://via.placeholder.com/268x180" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="https://via.placeholder.com/268x180" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="https://via.placeholder.com/268x180" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
 
 <nav class="navbar sticky-bottom fixed-bottom navbar-dark navbar-expand-md shadow-lg">
   <div class="collapse navbar-collapse" id="navbarText">
@@ -49,10 +74,11 @@
   </div>
 </nav>
 
+
 <style>
 	body {
 		background-color: rgb(206, 232, 245);
-		background-image: url("../images/pizza.jpg"); 
+		background-image: url("../images/alcohol.jpg"); 
 		background-size: 100%; 
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -62,7 +88,7 @@
 	}
 
 	.navbar {
-		background: rgba(0,0,0,0.8);
+		background: rgba(0,0,0,0.7);
 		padding-bottom: 0px; 
 		padding-top: 0px;
 	}
@@ -114,8 +140,13 @@
 	#searchbutton {	
 		display: block;	
 		margin-left: auto;
-    	margin-right: auto;
+    margin-right: auto;
 	}
+
+  #center {
+  	margin-left: auto;
+    margin-right: auto;
+  }
 
 	footer {
 		position: absolute;
@@ -133,24 +164,21 @@
 		margin-top: 10em;
 	}
 
-  .home {
+  #home {
     margin-top: 150px;
   }
 
-  
   .opacity {
     background: rgba(0,0,0,0.7);
     color: white;
     font-family: 'Amatic SC', cursive;
-    font-size: 2em;
   }
 
-  .pageTitle {
-    font-size: 2em;
+  .margin {
+    margin-top: 200px;
   }
 
   .searchSize {
     font-size: 20pt;
   }
-
 </style>
