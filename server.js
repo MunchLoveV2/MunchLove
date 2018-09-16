@@ -1,6 +1,7 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
+
 // Password auth stuffs
 var passport = require("passport");
 var session = require("express-session");
@@ -23,23 +24,24 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-//For Handlebars
-app.set('views', './app/views');
-app.set('view options', { layout: 'main' });
-app.engine('hbs', exphbs({
-    extname: '.hbs'
+// For Handlebars
+
+app.engine(
+  "handlebars",
+  exphbs({
+    defaultLayout: "main"
   })
 );
-app.set('view engine', '.hbs');
+app.set("view engine", "handlebars");
 
 // models
 var db = require("./app/models");
 
 // routes
-var authRoute = require('./app/routes/auth.js')(app, passport);
+var authRoute = require("./app/routes/auth.js")(app, passport);
 
 //load passport strategies
-require('./config/passport.js')(passport, db.userinfo);
+require("./config/passport.js")(passport, db.userinfo);
 
 var syncOptions = { force: false };
 
@@ -58,8 +60,8 @@ db.sequelize.sync(syncOptions).then(function() {
         PORT,
         PORT
       );
-    }else {
-      console.log (err);
+    } else {
+      console.log(err);
     }
   });
 });

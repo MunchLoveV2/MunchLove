@@ -1,30 +1,33 @@
-var exports = module.exports = {}
+var exports = (module.exports = {});
 
 exports.signup = function(req, res) {
-    res.render('signup');
-}
+  res.render("signup");
+};
 exports.error = function(req, res) {
-    res.render("404");
-}
+  res.render("404");
+};
 exports.login = function(req, res) {
-    res.render('login');
-}
+  res.render("login");
+};
 exports.profile = function(req, res) {
-    res.render('profile');
-}
+  res.render("profile");
+};
+exports.aboutus = function(req, res) {
+  res.render("aboutus");
+};
 exports.logout = function(req, res) {
-    req.session.destroy(function(err) {
-        res.redirect('/');
-    });
-}
+  req.session.destroy(function(err) {
+    res.redirect("/");
+  });
+};
 exports.main = function(req, res) {
-    if (req.isAuthenticated()) {
-        var user = {
-          id: req.session.passport.user,
-          isloggedin: req.isAuthenticated()
-        };
-        res.render("frontpage");
-      } else {
-        res.render("frontpage");
-      }
-}
+  if (req.isAuthenticated()) {
+    var user = {
+      id: req.session.passport.user,
+      isloggedin: req.isAuthenticated()
+    };
+    res.render("frontpage");
+  } else {
+    res.render("frontpage");
+  }
+};
