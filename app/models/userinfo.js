@@ -1,41 +1,28 @@
-module.exports = function(sequelize, DataTypes) {
-  var Userinfo = sequelize.define("Userinfo", {
+module.exports = function(sequelize, Sequelize) {
+  var Userinfo = sequelize.define("userinfo", {
     id: {
       primaryKey: true,
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      isUnique: true
+      type: Sequelize.INTEGER,
+      autoIncrement: true
     },
     username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1, 100]
-      }
+      type: Sequelize.STRING
     },
-    accountKey: {
-      type: DataTypes.STRING,
-      required: true,
-      validate: {
-        len: [1, 100]
-      }
+    password: {
+      type: Sequelize.STRING,
+      allowNull: false
     },
     email: {
-      type: DataTypes.STRING,
-      required: true,
-      len: [1, 100]
+      type: Sequelize.STRING,
+      allowNull: false
     },
     createdAt: {
-      type: DataTypes.DATE
+      type: Sequelize.DATE
+    },
+    status: {
+      type: Sequelize.ENUM("active", "inactive"),
+      defaultValue: "active"
     }
   });
-  
-  Userinfo.associate = function(models) {
-    Userinfo.hasMany(models.Userfavorite, {
-      onDelete: "cascade"
-    });
-  };
   return Userinfo;
 };
-
-

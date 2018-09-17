@@ -25,6 +25,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static("views/images"));
 
+app.use(function(req, res, next) {
+  res.locals.isAuthenticated = req.isAuthenticated();
+  next();
+});
+
 // For Handlebars
 
 app.engine(
@@ -41,10 +46,10 @@ var db = require("./app/models");
 // routes
 var authRoute = require("./app/routes/auth.js")(app, passport);
 
+
 //load passport strategies
 require("./config/passport.js")(passport, db.userinfo);
-// require favorites, should link to logic for favorites
-require("./app/routes/apiRoutes.js")(app, db.Userfavorite);
+
 
 var syncOptions = { force: false };
 

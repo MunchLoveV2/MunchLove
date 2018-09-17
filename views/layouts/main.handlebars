@@ -33,7 +33,7 @@
     event.preventDefault(); 
     var url = new URL(window.location);
     var location = $("#search").val();
-    url.searchParams.set("userID", "123123");
+    url.searchParams.set("userID", "2");
     console.log(url);
     window.location='/searchresults/' + location + url.search;
     
@@ -53,7 +53,7 @@
     
     var dataObject = {
       UserinfoId: user,
-      favoriteID: favoriteID
+      favoritesID: favoriteID
     }
 
     console.log(dataObject);

@@ -9,17 +9,26 @@
       <li class="nav-item">
         <a class="nav-link " href="/aboutus">About Us</a>
       </li>
+      {{#if isAuthenticated}}
+			<li class="nav-item">
+        <a class="nav-link" href="/profile">Profile</a>
+      </li>
+			<li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+			{{else}}
       <li class="nav-item">
         <a class="nav-link" href="/signup">Sign Up</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/login">Login</a>
       </li>
+			{{/if}}
     </ul>
   </div>
 </nav>
 
-<div id="home">
+<div id="home ">
   <div class="container opacity">
     <div class ="row margin">
       <div class = "col-4 offset-4 center">
@@ -31,26 +40,26 @@
         </form>
       </div>
     </div>
-  <div class="row">
-    {{#each businesses}}
-      <div class="col-4" id= "temporaryfontcolor">
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src={{image}} alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Name: {{name}}</h5>
-            <h4 class="card-title">Rating: {{rating}}</h4>
-            <h4 class="card-title">Phone Number: {{phone}}</h4>
-            <a id = {{id}} 
-              name = {{name}} 
-              rating = {{rating}} 
-              phone = {{phone}} 
-              class="btn btn-primary details"> Details </a>
-            <a href="#" class="btn btn-primary favorite">Favorite</a>
+      <div class="row">
+        {{#each businesses}}
+          <div class="col-4" id= "temporaryfontcolor">
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src={{image}} alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Name: {{name}}</h5>
+                <h4 class="card-title">Rating: {{rating}}</h4>
+                <h4 class="card-title">Phone Number: {{phone}}</h4>
+                <a id = {{id}} 
+                  name = {{name}} 
+                  rating = {{rating}} 
+                  phone = {{phone}} 
+                  class="btn btn-primary details"> Details </a>
+                <a href="#" class="btn btn-primary favorite">Favorite</a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    {{/each}}
-</div>
+        {{/each}}
+    </div>
   </div>
 </div>
 
@@ -76,8 +85,8 @@
 	}
 
   #temporaryfontcolor {
-    color: black;
-  }
+		color:black;
+	}
 
 	.navbar {
 		background: rgba(0,0,0,0.7);
