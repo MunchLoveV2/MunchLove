@@ -10,6 +10,10 @@ exports.login = function(req, res) {
   res.render("login");
 };
 exports.profile = function(req, res) {
+  var user = {
+    id: req.session.passport.user,
+    isloggedin: req.isAuthenticated()
+  };
   res.render("profile");
 };
 exports.aboutus = function(req, res) {

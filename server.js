@@ -25,6 +25,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static("views/images"));
 
+app.use(function(req, res, next) {
+  res.locals.isAuthenticated = req.isAuthenticated();
+  next();
+});
+
 // For Handlebars
 
 app.engine(
