@@ -5,11 +5,14 @@ var exphbs = require("express-handlebars");
 // Password auth stuffs
 var passport = require("passport");
 var session = require("express-session");
+var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
 // Middleware
+app.use(express.static("views/images"));
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -17,13 +20,12 @@ app.use(bodyParser.json());
 app.use(
   session({
     secret: "goN6DJJC6E287cC77kkdYuNuAyWnz7Q3iZj8",
-    resave: true,
+    resave: false,
     saveUninitialized: false
   })
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static("views/images"));
 
 app.use(function(req, res, next) {
   res.locals.isAuthenticated = req.isAuthenticated();

@@ -41,10 +41,7 @@ exports.searchresults = function(req, res) {
       }
       yelpData.businesses.push(dataObject);
     })
-
-
     res.render("searchresults", yelpData);
-
   })
   .catch(err => {
     // Failure
@@ -53,11 +50,9 @@ exports.searchresults = function(req, res) {
 };
 
 exports.profile = function(req, res) {
-  var user = {
-    id: req.session.passport.user,
-    isloggedin: req.isAuthenticated()
-  };
-  res.render("profile");
+  console.log("HELLLOOOOOO>>>>>>>>>", req.user);
+  console.log(req.isAuthenticated());
+  res.render("profile", {username: req.user.username});
 };
 exports.aboutus = function(req, res) {
   res.render("aboutus");
@@ -68,13 +63,7 @@ exports.logout = function(req, res) {
   });
 };
 exports.main = function(req, res) {
-  if (req.isAuthenticated()) {
-    var user = {
-      id: req.session.passport.user,
-      isloggedin: req.isAuthenticated()
-    };
+  console.log("HELLLOOOOOO>>>>>>>>>", req.user);
+  console.log(req.isAuthenticated());
     res.render("frontpage");
-  } else {
-    res.render("frontpage");
-  }
-};
+}; 

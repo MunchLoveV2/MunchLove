@@ -32,12 +32,13 @@ module.exports = function(passport, userinfo) {
               password: userPassword,
               email: req.body.email
             };
-            Userinfo.create(data).then(function(newUser, created) {
-              if (!newUser) {
+            Userinfo.create(data).then(function(user) {
+              if (!user) {
                 return done(null, false);
-              }
-              if (newUser) {
-                return done(null, newUser);
+              } else {
+                user.get();
+                console.log("HELLOOO FROM PASSPORT.JSSSSS >>>>>>>>>>", user);
+                return done(null, user);
               }
             });
           }
@@ -45,20 +46,6 @@ module.exports = function(passport, userinfo) {
       }
     )
   );
-
-  passport.serializeUser(function(user, done) {
-    done(null, user.id);
-  });
-
-  passport.deserializeUser(function(id, done) {
-    Userinfo.findById(id).then(function(user) {
-      if (user) {
-        done(null, user.get());
-      } else {
-        done(user.errors, null);
-      }
-    });
-  });
 
   //LOCAL SIGNIN
   passport.use(
@@ -89,9 +76,11 @@ module.exports = function(passport, userinfo) {
               return done(null, false, {
                 message: "Incorrect password."
               });
+            } else {
+              user.get();
+              console.log("PASSPORT>>>>>>>", user.id);
+              return done(null, user);
             }
-            var userinfo = user.get();
-            return done(null, userinfo);
           })
           .catch(function(err) {
             console.log("Error:", err);
@@ -102,4 +91,16 @@ module.exports = function(passport, userinfo) {
       }
     )
   );
+  passport.serializeUser(function(user, done) {
+    done(null, user.id);
+  });
+  passport.deserializeUser(function(id, done) {
+    Userinfo.findById(id).then(function(user) {
+      if (user) {
+        done(null, user.get());
+      } else {
+        done(user.errors, null);
+      }
+    });
+  });
 };
