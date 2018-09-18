@@ -49,6 +49,7 @@ var authRoute = require("./app/routes/auth.js")(app, passport);
 //load passport strategies
 require("./config/passport.js")(passport, db.userinfo);
 
+
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true

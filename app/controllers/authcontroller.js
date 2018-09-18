@@ -51,6 +51,7 @@ exports.searchresults = function(req, res) {
     console.log(err);
   });
 };
+
 exports.profile = function(req, res) {
   var user = {
     id: req.session.passport.user,
