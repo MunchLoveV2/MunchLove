@@ -9,7 +9,6 @@ var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var app = express();
 var PORT = process.env.PORT || 3000;
-
 // Middleware
 app.use(express.static("views/images"));
 app.use(cookieParser());
@@ -47,10 +46,10 @@ var db = require("./app/models");
 
 // routes
 var authRoute = require("./app/routes/auth.js")(app, passport);
+var yelp = require("./app/routes/yelp.js")(app);
 
 //load passport strategies
 require("./config/passport.js")(passport, db.userinfo);
-
 
 var syncOptions = { force: false };
 
