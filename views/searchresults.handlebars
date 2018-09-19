@@ -43,10 +43,10 @@
       <div class="row">
         {{#each businesses}}
           <div class="col-4" id= "temporaryfontcolor">
-            <div class="card" style="width: 18rem;">
+            <div class="card box" style="width: 18rem;">
               <img class="card-img-top" src={{image}} alt="Card image cap">
               <div class="card-body">
-                <h5 class="card-title">Name: {{name}}</h5>
+                <h5 class="card-title resName">Name: {{name}}</h5>
                 <h4 class="card-title">Rating: {{rating}}</h4>
                 <h4 class="card-title">Phone Number: {{phone}}</h4>
                 <a id = {{id}} 
@@ -182,4 +182,24 @@
   .searchSize {
     font-size: 20pt;
   }
+
+  .row {
+    margin:50px;
+    padding: 30px;
+  }
+  .card-img-top {
+    width:286px;
+    height: 200px;
+  }
+
+  .resName {
+    font-size: 20pt;
+    font-weight: bold;
+  }
+
+  .box {
+    height: 450px;
+    margin-bottom: 30px;
+  }
+
 </style>
