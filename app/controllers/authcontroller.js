@@ -62,9 +62,6 @@ exports.profile = function(req, res) {
 exports.aboutus = function(req, res) {
   res.render("aboutus");
 };
-exports.favorites = function(req, res) {
-  res.redirect("/");
-};
 exports.logout = function(req, res) {
   req.session.destroy(function(err) {
     res.redirect("/");
