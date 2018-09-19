@@ -1,20 +1,29 @@
 <nav class="navbar fixed-top navbar-dark navbar-expand-md shadow-lg ">
-	<img class="logo img-responsive" src="../images/trans3.png">
-	<a class="navbar-brand brand" href="#">Munch</a>
+	<img class="logo img-responsive" src="trans3.png">
+	<a class="navbar-brand brand" href="/">Munch</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="navbarText">
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<a class="nav-link " href="#">About Us</a>
+				<a class="nav-link " href="/aboutus">About Us</a>
 			</li>
+		{{#if isAuthenticated}}
 			<li class="nav-item">
-				<a class="nav-link" href="#">Sign Up</a>
-			</li>
+        <a class="nav-link" href="/profile">Profile</a>
+      </li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Login</a>
-			</li>
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+			{{else}}
+      <li class="nav-item">
+        <a class="nav-link" href="/signup">Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+			{{/if}}
 		</ul>
 	</div>
 </nav>
@@ -27,7 +36,7 @@
 					<div class="form-group">
 						<input type="text" id="search" class="form-control shadow-lg p-4" aria-describedby="search" placeholder="Zip code?">
 					</div>
-					<button id="searchbutton" class="btn btn-danger btn-lg shadow-lg" data-toggle="button" aria-pressed="false" autocomplete="off" role="button" aria-pressed="true">Let's get munching!</button>
+					<button id="searchbutton" class="btn btn-danger btn-lg shadow-lg searchbutton" data-toggle="button" aria-pressed="false" autocomplete="off" role="button" aria-pressed="true">Let's get munching!</button>
 				</form>
 			</div>
 		</div>
@@ -46,7 +55,7 @@
 <style>
 	body {
 		background-color: rgb(206, 232, 245);
-		background-image: url("../images/bbq.jpg"); 
+		background-image: url("bbq.jpg"); 
 		background-size: 100%; 
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -132,4 +141,3 @@
   }
 
 </style>
-
