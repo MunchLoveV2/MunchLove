@@ -45,9 +45,12 @@ var db = require("./app/models");
 
 // routes
 var authRoute = require("./app/routes/auth.js")(app, passport);
+//for userfavorites
+require("./app/routes/apiRoutes.js")(app, db.Userfavorite);
 
 //load passport strategies
-require("./config/passport.js")(passport, db.userinfo);
+require("./config/passport.js")(passport, db.Userinfo);
+
 
 
 var syncOptions = { force: false };
