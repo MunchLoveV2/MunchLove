@@ -47,6 +47,21 @@ module.exports = function(passport, userinfo) {
     )
   );
 
+  passport.serializeUser(function(user, done) {
+    done(null, user.id);
+  });
+
+  passport.deserializeUser(function(id, done) {
+    Userinfo.findById(id).then(function(user) {
+      if (user) {
+        
+        done(null, user.get());
+      } else {
+        done(user.errors, null);
+      }
+    });
+  });
+
   //LOCAL SIGNIN
   passport.use(
     "local-signin",
