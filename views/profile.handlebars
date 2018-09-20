@@ -30,11 +30,12 @@
 
   <div class="container opacity">
     <div class ="row margin">
-      <div class = "col-4 offset-4 center">
-        <h5>Welcome Back! Here is a list of your favorite Munches!</h5>
+      <div class = "col-8 offset-2 text-center title">
+        <h5 class="pageTitle">Welcome Back!</h5>
+        <h5 class="pageTitle">Here is a list of your favorite Munches!</h5>
       </div>
       <div class = "col-4 offset-4 center">
-        <form class="clearfix mb-4" action="GET">
+        <form class="clearfix mb-4 text-center" action="GET">
           <div class="form-group">
             <input type="text" id="search" class="form-control searchSize" aria-describedby="search" placeholder="Search for Munches?">
           </div>
@@ -189,5 +190,13 @@
 
   .searchSize {
     font-size: 20pt;
+  }
+
+  .pageTitle {
+    font-size: 4em;
+  }
+
+  .title {
+    height: 30px;
   }
 </style>
