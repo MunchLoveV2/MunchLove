@@ -34,9 +34,9 @@
 			<div class="col-4 offset-4">
 				<form class="clearfix mb-4" method= "GET">
 					<div class="form-group">
-						<input type="text" name="zip" id="search" class="form-control shadow-lg p-4" aria-describedby="search" placeholder="Zip code?">
+						<input type="text" id="search" class="form-control shadow-lg p-4 text-center zip" aria-describedby="search" placeholder="Enter Zip Code">
 					</div>
-          <button class="btn btn-primary float-center searchbutton-user">Let's get Munching!</button>
+					<button id="searchbutton" class="btn btn-danger btn-lg shadow-lg searchbutton amatic searchbutton-user" data-toggle="button" aria-pressed="false" autocomplete="off" role="button" aria-pressed="true">Let's get munching!</button>
 				</form>
 			</div>
 		</div>
@@ -54,7 +54,7 @@
 <style>
 	body {
 		background-color: rgb(206, 232, 245);
-		background-image: url("bbq.jpg"); 
+		background-image: url("bg.jpg"); 
 		background-size: 100%; 
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -63,6 +63,15 @@
 		/* background: radial-gradient(circle, white, black); */
 	}
 
+	.amatic {
+		font-family: 'Amatic SC', cursive;
+		font-size: 25pt;
+	}
+
+	.zip {
+		font-family: arial;
+		font-size: 20pt;
+	}
 	.navbar {
 		background: rgba(0,0,0,0.8);
 		padding-bottom: 0px; 
