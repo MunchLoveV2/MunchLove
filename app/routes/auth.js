@@ -1,7 +1,9 @@
 var authController = require("../controllers/authcontroller.js");
 module.exports = function(app, passport) {
   // This links to the front page
-  app.get("/", authController.main);
+  app.get("/frontpage", authController.frontpage);
+  app.get("/", authController.front);
+
   app.get("/signup", checkLogIn, authController.signup);
   app.get("/login", checkLogIn, authController.login);
   app.get("/aboutus", authController.aboutus);

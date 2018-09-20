@@ -55,7 +55,6 @@ exports.searchresults = function(req, res) {
   });
 };
 exports.profile = function(req, res) {
-
   // looks at Userfavorite table (in SQL) and queries the 'UserinfoId Column' 
   // it checks for any rows that have User ID of the user currently logged in
   // we have access to "req.user.id" because it is given to us from Passport.js
@@ -64,11 +63,6 @@ exports.profile = function(req, res) {
       UserinfoId: req.user.id
     }
   }).then(function(data) {
-
-    var user = {
-      id: req.session.passport.user,
-      isloggedin: req.isAuthenticated()
-    };
 
     // we are setting var favorites like this... because this is the structure that handlebars requires 
     var favorites = { 
@@ -105,8 +99,11 @@ exports.logout = function(req, res) {
     res.redirect("/");
   });
 };
-exports.main = function(req, res) {
+exports.frontpage = function(req, res) {
   console.log("HELLLOOOOOO>>>>>>>>>", req.user);
   console.log(req.isAuthenticated());
   res.render("frontpage");
+};
+exports.front = function(req, res) {
+  res.redirect("/frontpage");
 };
