@@ -31,7 +31,7 @@
 <div id="home ">
   <div class="container opacity">
     <div class ="row margin">
-      <div class = "col-4 offset-4 center">
+      <div class = "col-4 offset-4 center top">
         <form class="clearfix mb-4" action="GET">
           <div class="form-group">
             <input type="text" id="search" class="form-control searchSize" aria-describedby="search" placeholder="Search Another Location?">
@@ -71,7 +71,11 @@
   </div>
 </nav>
 
-
+<script language="javascript">
+  $(document).on('scroll', function (e) {
+    $('.navbar').css('opacity', ($(document).scrollTop() / 100));
+});
+</script>
 <style>
 	body {
 		background-color: rgb(206, 232, 245);
@@ -92,6 +96,7 @@
 		background: rgba(0,0,0,0.7);
 		padding-bottom: 0px; 
 		padding-top: 0px;
+    
 	}
 
 	@media screen and (min-width:768px) {
@@ -165,8 +170,8 @@
 		margin-top: 10em;
 	}
 
-  #home {
-    margin-top: 150px;
+  .container {
+    margin-top: 200px;
   }
 
   .opacity {
@@ -187,6 +192,7 @@
     margin:50px;
     padding: 30px;
   }
+
   .card-img-top {
     width:286px;
     height: 200px;
@@ -201,5 +207,11 @@
     height: 450px;
     margin-bottom: 30px;
   }
+
+  {{!-- .top {
+    height: 100px;
+    margin-top: 0px;
+    
+  } --}}
 
 </style>
