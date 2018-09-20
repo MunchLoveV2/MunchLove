@@ -1,4 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
+  
+  //userinfo data structure
   var Userinfo = sequelize.define("Userinfo", {
     id: {
       primaryKey: true,
@@ -34,6 +36,8 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
   
+  // this allows table userfavorite to join with table userinfo in SQL
+  //keep in mind this is also called in the other models table
   Userinfo.associate = function(models) {
     Userinfo.hasMany(models.Userfavorite, {
       onDelete: "cascade"
