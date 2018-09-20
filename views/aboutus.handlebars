@@ -49,7 +49,6 @@
     <div class="col-12">
       <h3 class="pageTitle text-center">Our Development Team</h3>
     </div>
-  
 
     <div class= "row marginLeft">
       <div class="col-3">
@@ -70,10 +69,7 @@
         </div>
       </div>
 
-    
-
-    <div class= "row marginLeft">
-      <div class="col-3 ">
+      <div class="col-3">
         <div class = "row">
           <img src="randi.jpg" class="img-circle" alt="Randi Prince">
         </div>
@@ -152,7 +148,7 @@
 <style>
 	body {
 		background-color: rgb(206, 232, 245);
-		background-image: url("dessert.jpg"); 
+		background-image: url("bg.jpg"); 
 		background-size: 100%; 
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -260,4 +256,25 @@
   .subTitle {
     font-size: 2em;
   }
+
+  nav.shrink {
+    background-color: rgba(0,0,0,1)
+    
+  }
 </style>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+  <script>
+    $(window).scroll(function() {
+      if ($(document).scrollTop() > 50) {
+        $('nav').addClass('shrink');
+      }
+      else {
+        $('nav').removeClass('shrink');
+      }
+    })
+  </script>
