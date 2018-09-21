@@ -36,7 +36,7 @@
           <div class="form-group">
             <input type="text" id="search" class="form-control searchSize" aria-describedby="search" placeholder="Search Another Location?">
           </div>
-          <button class="btn btn-primary float-center searchbutton-user">Go!</button>
+          <button class="btn btn-primary float-center searchbutton">Go!</button>
         </form>
       </div>
     </div>
@@ -49,10 +49,11 @@
                 <h5 class="card-title resName">Name: {{name}}</h5>
                 <h4 class="card-title">Rating: {{rating}}</h4>
                 <h4 class="card-title">Phone Number: {{phone}}</h4>
-                <a id = {{id}} 
-                  name = {{name}} 
-                  rating = {{rating}} 
-                  phone = {{phone}} 
+                <a id = "{{id}}"
+                  name = "{{name}}"
+                  rating = "{{rating}}"
+                  phone = "{{phone}}"
+                  image = "{{image}}"
                   class="btn btn-primary details"> Details </a>
                 <a href="#" class="btn btn-primary favorite">Favorite</a>
               </div>
@@ -71,11 +72,6 @@
   </div>
 </nav>
 
-<script language="javascript">
-  $(document).on('scroll', function (e) {
-    $('.navbar').css('opacity', ($(document).scrollTop() / 100));
-});
-</script>
 <style>
 	body {
 		background-color: rgb(206, 232, 245);
@@ -224,13 +220,3 @@ nav.shrink {
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
 
-  <script>
-    $(window).scroll(function() {
-      if ($(document).scrollTop() > 50) {
-        $('nav').addClass('shrink');
-      }
-      else {
-        $('nav').removeClass('shrink');
-      }
-    })
-  </script>
