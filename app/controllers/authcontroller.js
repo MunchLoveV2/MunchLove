@@ -54,6 +54,51 @@ exports.searchresults = function(req, res) {
     console.log(err);
   });
 };
+
+exports.searchresults1 = function(req, res) {
+  //we are able to call req.params.location here because this function is tied to "/searchresults/:location" (see auth.js)
+  var location = req.params.location;
+
+  // using the location value that comes from windows.location, we can search for businesses with the Yelp API
+  var yelp = new yelpAPI(apiKey);
+  var params = [{ location: location }];
+
+  // yelp API called
+  yelp.query('businesses/search', params)
+  .then(data => {
+
+    // data that comes from the API is a string, need to convert it to JSON 
+    var dataArray = JSON.parse(data).businesses;
+    
+    // we are setting var yelpData like this... because this is the structure that handlebars requires 
+    var yelpData = { 
+      businesses: []
+    }
+
+    // keeping in mind that dataArray is the data that the Yelp API gives to us, we iterate over dataArray (like a for loop) 
+    // and we push the data into the businesses:[] array (from yelpData) 
+    dataArray.forEach(data => {
+      var dataObject = {
+        name: data.name,
+        rating: data.rating,
+        phone: data.phone,
+        image: data.image_url,
+        id: data.id
+      }
+      yelpData.businesses.push(dataObject);
+    })
+
+    // with our "new and improved" yelpData we give it to handlebars to be rendered
+    res.render("searchresults1", yelpData);
+
+  })
+  .catch(err => {
+
+    console.log(err);
+  });
+};
+
+
 exports.profile = function(req, res) {
   // looks at Userfavorite table (in SQL) and queries the 'UserinfoId Column' 
   // it checks for any rows that have User ID of the user currently logged in
