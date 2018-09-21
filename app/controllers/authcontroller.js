@@ -5,7 +5,7 @@ var apiKey = '81fLxhTR0I7D6azLHNAUlu88BxvFgonIl8rD-oguXUftxtdkI5DjI0AB8SEQ1w2uG3
 
 exports.signup = function(req, res) {
   res.render("signup");
-};
+}; 
 exports.error = function(req, res) {
   res.render("404");
 };
@@ -15,7 +15,8 @@ exports.login = function(req, res) {
 exports.searchresults = function(req, res) {
   //we are able to call req.params.location here because this function is tied to "/searchresults/:location" (see auth.js)
   var location = req.params.location;
-
+  console.log ("WTFFFFFFFFFFF AHHHHH>>>>>>>>>>>>", req.params.location);
+  console.log("hello friend");
   // using the location value that comes from windows.location, we can search for businesses with the Yelp API
   var yelp = new yelpAPI(apiKey);
   var params = [{ location: location }];

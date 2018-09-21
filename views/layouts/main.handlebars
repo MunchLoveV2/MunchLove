@@ -40,10 +40,17 @@
     // we are to using this 'get request' to obtain the userID value (see exports.favorites in authcontroller) 
     $.get( "/api/favorites", function( data ) {
       console.log(data);
-      var userID = data.id;
-      console.log(userID);
-      url.searchParams.set("userID", userID);
-      window.location ='/searchresults/' + location + url.search;
+      if (data.id) {
+        var userID = data.id;
+        console.log(userID);
+        url.searchParams.set("userID", userID);
+        window.location ='/searchresults/' + location + url.search;
+      } else {
+        var userID = 0;
+        console.log("BUT WHYYYYYYYYYYYYYYYYYYYY>>>>>>>>>>>", userID);
+        url.searchParams.set("userID", userID);
+        window.location ='/searchresults/' + location + url.search;
+      }
     });
   })
 
