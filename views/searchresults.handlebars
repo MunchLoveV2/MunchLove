@@ -30,8 +30,8 @@
 
 <div id="home ">
   <div class="container opacity">
-    <div class ="row margin">
-      <div class = "col-4 offset-4 center top">
+    <div class ="row margin top">
+      <div class = "col-4 offset-4 center ">
         <form class="clearfix mb-4" action="GET">
           <div class="form-group">
             <input type="text" id="search" class="form-control searchSize" aria-describedby="search" placeholder="Search Another Location?">
@@ -180,10 +180,6 @@
     font-family: 'Amatic SC', cursive;
   }
 
-  .margin {
-    margin-top: 200px;
-  }
-
   .searchSize {
     font-size: 20pt;
   }
@@ -208,29 +204,24 @@
     margin-bottom: 30px;
   }
 
-  {{!-- .top {
-    height: 100px;
-    margin-top: 0px;
-    
-  } --}}
+ .top {
+   height: 150px;
+ }
 
 nav.shrink {
     background-color: rgba(0,0,0,1)
   }
 </style>
 
-<script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
 
-  <script>
-    $(window).scroll(function() {
-      if ($(document).scrollTop() > 50) {
-        $('nav').addClass('shrink');
-      }
-      else {
-        $('nav').removeClass('shrink');
-      }
-    })
-  </script>
+
+<script>
+  $(window).scroll(function() {
+    if ($(document).scrollTop() > 50) {
+      $('nav').addClass('shrink');
+    }
+    else {
+      $('nav').removeClass('shrink');
+    }
+  })
+</script>
