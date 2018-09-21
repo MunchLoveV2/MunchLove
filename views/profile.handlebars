@@ -40,7 +40,7 @@
           <div class="form-group">
             <input type="text" id="search" class="form-control searchSize" aria-describedby="search" placeholder="Search Another Location?">
           </div>
-          <button class="btn btn-primary float-center searchbutton-user">Go!</button>
+          <button class="btn btn-primary float-center searchbutton">Go!</button>
         </form>
       </div>
     </div>
@@ -48,15 +48,16 @@
         {{#each businesses}}
          
           <div class="col-4" id= "temporaryfontcolor">
-            <div class="card" style="width: 18rem;">
-              {{!-- <img class="card-img-top" src={{image}} alt="Card image cap"> --}}
+            <div class="card box" style="width: 18rem;">
+              <img class="card-img-top" src={{favoritesImage}} alt="Card image cap">
               <div class="card-body">
-                <h5 class="card-title">Name: {{favoritesID}}</h5>
-                <h4 class="card-title">Rating: {{rating}}</h4>
-                <h4 class="card-title">Phone Number: {{phone}}</h4>
+                <h5 class="card-title resName">Name: {{favoritesName}}</h5>
+                <h4 class="card-title">Rating: {{favoritesRating}}</h4>
+                <h4 class="card-title">Phone Number: {{favoritesPhone}}</h4>
               </div>
             </div>
           </div>
+
         {{/each}}
     </div>
   </div>

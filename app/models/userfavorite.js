@@ -1,6 +1,10 @@
 module.exports = function(sequelize, DataTypes) {
     var Userfavorite = sequelize.define("Userfavorite", {
-      favoritesID: DataTypes.TEXT
+      favoritesID: DataTypes.TEXT,
+      favoritesName: DataTypes.TEXT,
+      favoritesPhone: DataTypes.TEXT,
+      favoritesRating: DataTypes.TEXT,
+      favoritesImage: DataTypes.TEXT
     });
    
 
