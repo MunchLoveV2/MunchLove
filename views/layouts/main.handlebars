@@ -21,41 +21,32 @@
 
 {{{body}}}
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 
 <script type="text/javascript">
-  // would probably be better to move this into a new JS folder 
-
-  // this click handler is used when there is no user logged in
-  // there might be an inefficiency here, might be better to use Passport.js somehow than to create two separate clickHandlers
 
   // this click handler is used when there is a user logged in
-  // the difference is we're put a UserID parameter into the url (i.e. "?userID=1")
-  // putting this parameter into the url allows us to use it when use the favorites clickHandler later on (see below)
-  $(".searchbutton-user").click(function(){
+  // we put a UserID parameter into the url (i.e. "?userID=1")
+  // putting this parameter into the url allows us to use it when we use the favorites clickHandler later on (see below)
+  $(".searchbutton").click(function(){
     event.preventDefault(); 
-        console.log("HELLLOOOO>>>>>>>1", url);
-
-    // new URL is an object given to use by javascript
+    // new URL is an object given to us by javascript
     // we need to initialize it like this because we will need it to use the searchParams method
     var url = new URL(window.location);
-        console.log("HELLLOOOO>>>>>>>2", url);
     var location = $("#search").val();
-    console.log("HELLLOOOO>>>>>>>3", url);
+    //console.log(location);
     // we are to using this 'get request' to obtain the userID value (see exports.favorites in authcontroller) 
     $.get( "/api/favorites", function( data ) {
-          console.log("HELLLOOOO>>>>>>>4", url);
+      console.log(data);
       var userID = data.id;
-          console.log("HELLLOOOO>>>>>>>5", url);
+      console.log(userID);
       url.searchParams.set("userID", userID);
-          console.log("HELLLOOOO>>>>>>6", url);
       window.location ='/searchresults/' + location + url.search;
-    console.log("HELLLOOOO>>>>>>>7", url);
     });
-    console.log("HELLLOOOO>>>>>>>8", url);
   })
+
 
     // this clickHandler puts user's favorite restaurants into the userFavorites table (via Sequelize)
    $(".details").click(function(){
@@ -69,11 +60,22 @@
 
     // get this value from handlebars
     var favoriteID = $(this).attr("id");
+    var favoritesName = $(this).attr("name");
+    var favoritesPhone = $(this).attr("phone");
+    var favoritesRating = $(this).attr("rating");
+    var favoritesImage = $(this).attr("image");
+    console.log(favoritesName);
+    console.log(favoritesPhone);
+    console.log(favoritesRating);
 
     // we structure it like this so that it can easily be put into the database via sequelize (see apiRoutes.js)
     var dataObject = {
       UserinfoId: user,
-      favoritesID: favoriteID
+      favoritesName: favoritesName,
+      favoritesPhone: favoritesPhone,
+      favoritesRating: favoritesRating,
+      favoritesID: favoriteID,
+      favoritesImage: favoritesImage
     }
 
     
@@ -82,7 +84,6 @@
       url: "/api/favorites",
       data: dataObject,
     });
-    console.log("HELLLOOOO>>>>>>>AHHHHH KILLLLM EEEE", url);
   })
 </script>
 
