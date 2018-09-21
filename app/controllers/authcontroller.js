@@ -15,10 +15,13 @@ exports.login = function(req, res) {
 exports.searchresults = function(req, res) {
   //we are able to call req.params.location here because this function is tied to "/searchresults/:location" (see auth.js)
   var location = req.params.location;
+  var term = req.params.term;
+
+  console.log(term);
 
   // using the location value that comes from windows.location, we can search for businesses with the Yelp API
   var yelp = new yelpAPI(apiKey);
-  var params = [{ location: location }];
+  var params = [{ location: location, term: term }];
 
   // yelp API called
   yelp.query('businesses/search', params)
@@ -58,10 +61,13 @@ exports.searchresults = function(req, res) {
 exports.searchresults1 = function(req, res) {
   //we are able to call req.params.location here because this function is tied to "/searchresults/:location" (see auth.js)
   var location = req.params.location;
+  var term = req.params.term;
+
+  console.log(term);
 
   // using the location value that comes from windows.location, we can search for businesses with the Yelp API
   var yelp = new yelpAPI(apiKey);
-  var params = [{ location: location }];
+  var params = [{ location: location, term: term }];
 
   // yelp API called
   yelp.query('businesses/search', params)

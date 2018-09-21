@@ -8,8 +8,8 @@ module.exports = function(app, passport) {
   app.get("/login", checkLogIn, authController.login);
   app.get("/aboutus", authController.aboutus);
 
-  app.get("/searchresults/:location", authController.searchresults);
-  app.get("/searchresults1/:location", authController.searchresults1);
+  app.get("/searchresults/:location/:term", authController.searchresults);
+  app.get("/searchresults1/:location/:term", authController.searchresults1);
   app.post(
     "/signup",
     passport.authenticate("local-signup", {

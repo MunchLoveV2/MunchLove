@@ -35,7 +35,8 @@
     // new URL is an object given to us by javascript
     // we need to initialize it like this because we will need it to use the searchParams method
     var url = new URL(window.location);
-    var location = $("#search").val();
+    var location = $("#location").val();
+    var term = $("#term").val();
     //console.log(location);
     // we are to using this 'get request' to obtain the userID value (see exports.favorites in authcontroller) 
     $.get( "/api/favorites", function( data ) {
@@ -43,15 +44,17 @@
       var userID = data.id;
       console.log(userID);
       url.searchParams.set("userID", userID);
-      window.location ='/searchresults/' + location + url.search;
+      window.location ='/searchresults/' + location + "/" + term + url.search;
     });
   })
 
     $(".searchbutton_noUser").click(function(){
     event.preventDefault(); 
     var url = new URL(window.location);
-    var location = $("#search").val();
-    window.location ='/searchresults1/' + location;
+    var location = $("#location").val();
+    var term = $("#term").val();
+    console.log(location);
+    window.location ='/searchresults1/' + location + "/" + term;
   })
 
 
