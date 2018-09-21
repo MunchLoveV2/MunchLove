@@ -27,7 +27,7 @@
 		</ul>
 	</div>
 </nav>
-
+{{#if isAuthenticated}}
 <div id="home">
 	<div class="container homesearch">
 		<div class="row">
@@ -42,7 +42,17 @@
 		</div>
 	</div>
 </div>
-
+{{else}}
+<div id="home">
+	<div class="container homesearch">
+		<div class="row">
+			<div class="col-4 offset-4">
+  			<h1>Log in to Continue!</h1>
+			</div>
+		</div>
+	</div>
+</div>
+{{/if}}
 <nav class="navbar sticky-bottom fixed-bottom navbar-dark navbar-expand-md shadow-lg">
   <div class="collapse navbar-collapse" id="navbarText">
     <div class= "col s4 text-center">
