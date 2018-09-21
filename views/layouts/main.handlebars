@@ -22,52 +22,69 @@
 {{{body}}}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 
 <script type="text/javascript">
 
-
+  // this click handler is used when there is a user logged in
+  // we put a UserID parameter into the url (i.e. "?userID=1")
+  // putting this parameter into the url allows us to use it when we use the favorites clickHandler later on (see below)
   $(".searchbutton").click(function(){
     event.preventDefault(); 
+    // new URL is an object given to us by javascript
+    // we need to initialize it like this because we will need it to use the searchParams method
     var url = new URL(window.location);
     var location = $("#search").val();
-    
-    var userID;
-    url.searchParams.set("userID", 1);
-    console.log(url);
-    window.location='/searchresults/' + location + url.search;
-    
+    //console.log(location);
+    // we are to using this 'get request' to obtain the userID value (see exports.favorites in authcontroller) 
+    $.get( "/api/favorites", function( data ) {
+      console.log(data);
+      var userID = data.id;
+      console.log(userID);
+      url.searchParams.set("userID", userID);
+      window.location ='/searchresults/' + location + url.search;
+    });
   })
 
+
+    // this clickHandler puts user's favorite restaurants into the userFavorites table (via Sequelize)
    $(".details").click(function(){
     event.preventDefault(); 
+
+    //these lines of code give us the value of userID (we put it there from the previous clickHandlers)
     var url = new URL(window.location);
     var urlParam = url.search;
-    var favoriteID = $(this).attr("id");
-    var favoriteName = $(this).attr("name");
-    var favoriteRating = $(this).attr("rating");
-    var favoritePhone = $(this).attr("phone");
-
     var query = new URLSearchParams(urlParam);
     var user = query.get("userID");
-    
+
+    // get this value from handlebars
+    var favoriteID = $(this).attr("id");
+    var favoritesName = $(this).attr("name");
+    var favoritesPhone = $(this).attr("phone");
+    var favoritesRating = $(this).attr("rating");
+    var favoritesImage = $(this).attr("image");
+    console.log(favoritesName);
+    console.log(favoritesPhone);
+    console.log(favoritesRating);
+
+    // we structure it like this so that it can easily be put into the database via sequelize (see apiRoutes.js)
     var dataObject = {
       UserinfoId: user,
-      favoritesID: favoriteID
+      favoritesName: favoritesName,
+      favoritesPhone: favoritesPhone,
+      favoritesRating: favoritesRating,
+      favoritesID: favoriteID,
+      favoritesImage: favoritesImage
     }
 
-    console.log(dataObject);
-
+    
     $.ajax({
       type: "POST",
       url: "/api/favorites",
       data: dataObject,
     });
-
   })
-
 </script>
 
 

@@ -1,10 +1,13 @@
 var authController = require("../controllers/authcontroller.js");
 module.exports = function(app, passport) {
   // This links to the front page
-  app.get("/", authController.main);
+  app.get("/frontpage", authController.frontpage);
+  app.get("/", authController.front);
+
   app.get("/signup", checkLogIn, authController.signup);
   app.get("/login", checkLogIn, authController.login);
   app.get("/aboutus", authController.aboutus);
+
   app.get("/searchresults/:location", authController.searchresults);
   app.post(
     "/signup",
@@ -14,6 +17,7 @@ module.exports = function(app, passport) {
     })
   );
   app.get("/profile", isLoggedIn, authController.profile);
+  app.get("/api/favorites", authController.favorites);
   app.get("/logout", authController.logout);
   app.post(
     "/login",

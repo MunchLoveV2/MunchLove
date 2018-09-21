@@ -31,8 +31,11 @@
 <div id="home ">
   <div class="container opacity">
     <div class ="row margin top">
+
+      
+
       <div class = "col-4 offset-4 center ">
-        <form class="clearfix mb-4" action="GET">
+        <form class="clearfix mb-4 text-center" action="GET">
           <div class="form-group">
             <input type="text" id="search" class="form-control searchSize" aria-describedby="search" placeholder="Search Another Location?">
           </div>
@@ -40,6 +43,8 @@
         </form>
       </div>
     </div>
+
+
       <div class="row">
         {{#each businesses}}
           <div class="col-4" id= "temporaryfontcolor">
@@ -49,10 +54,11 @@
                 <h5 class="card-title resName">Name: {{name}}</h5>
                 <h4 class="card-title">Rating: {{rating}}</h4>
                 <h4 class="card-title">Phone Number: {{phone}}</h4>
-                <a id = {{id}} 
-                  name = {{name}} 
-                  rating = {{rating}} 
-                  phone = {{phone}} 
+                <a id = "{{id}}"
+                  name = "{{name}}"
+                  rating = "{{rating}}"
+                  phone = "{{phone}}"
+                  image = "{{image}}"
                   class="btn btn-primary details"> Details </a>
                 <a href="#" class="btn btn-primary favorite">Favorite</a>
               </div>
@@ -71,11 +77,6 @@
   </div>
 </nav>
 
-<script language="javascript">
-  $(document).on('scroll', function (e) {
-    $('.navbar').css('opacity', ($(document).scrollTop() / 100));
-});
-</script>
 <style>
 	body {
 		background-color: rgb(206, 232, 245);
@@ -205,7 +206,7 @@
   }
 
  .top {
-   height: 150px;
+   height: 300px;
  }
 
 nav.shrink {
@@ -215,13 +216,8 @@ nav.shrink {
 
 
 
-<script>
-  $(window).scroll(function() {
-    if ($(document).scrollTop() > 50) {
-      $('nav').addClass('shrink');
-    }
-    else {
-      $('nav').removeClass('shrink');
-    }
-  })
-</script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+

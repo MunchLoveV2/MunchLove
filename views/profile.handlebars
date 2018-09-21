@@ -30,53 +30,45 @@
   </div>
 </nav>
 
+<div id="profile">
   <div class="container opacity">
-    <div class ="row margin">
-      <div class = "col-8 offset-2 text-center title">
+    <div class ="row margin top">
+
+      <div class = "col-10 offset-1 text-center title">
         <h5 class="pageTitle">Welcome Back!</h5>
-        <h5 class="pageTitle">Here is a list of your favorite Munches!</h5>
+        <h4 class="pageTitle">Here is a list of your favorite Munches!</h4>
       </div>
+
       <div class = "col-4 offset-4 center">
         <form class="clearfix mb-4 text-center" action="GET">
           <div class="form-group">
-            <input type="text" id="search" class="form-control searchSize" aria-describedby="search" placeholder="Search for Munches?">
+            <input type="text" id="search" class="form-control searchSize" aria-describedby="search" placeholder="Search Another Location?">
           </div>
           <button class="btn btn-primary float-center searchbutton">Go!</button>
-        </form>
-      </div>
-    <div class="row">
-      <div class="col-4">
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="https://via.placeholder.com/268x180" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Details</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="https://via.placeholder.com/268x180" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Details</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="https://via.placeholder.com/268x180" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Details</a>
-          </div>
-        </div>
+        </form> 
       </div>
     </div>
+
+
+      <div class="row">
+        {{#each businesses}}
+         
+          <div class="col-4" id= "temporaryfontcolor">
+            <div class="card box" style="width: 18rem;">
+              <img class="card-img-top" src={{favoritesImage}} alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title resName">Name: {{favoritesName}}</h5>
+                <h4 class="card-title">Rating: {{favoritesRating}}</h4>
+                <h4 class="card-title">Phone Number: {{favoritesPhone}}</h4>
+              </div>
+            </div>
+          </div>
+
+        {{/each}}
+    </div>
   </div>
+</div>
+
 
 <nav class="navbar sticky-bottom fixed-bottom navbar-dark navbar-expand-md shadow-lg">
   <div class="collapse navbar-collapse" id="navbarText">
@@ -86,8 +78,15 @@
   </div>
 </nav>
 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../public/js/index.js"></script>
+
 
 <style>
+
+  #temporaryfontcolor {
+		color:black;
+	}
 	body {
 		background-color: rgb(206, 232, 245);
 		background-image: url("alcohol.jpg"); 
@@ -186,6 +185,11 @@
     font-family: 'Amatic SC', cursive;
   }
 
+  .card-img-top {
+    width:286px;
+    height: 200px;
+  }
+
   .margin {
     margin-top: 200px;
   }
@@ -200,6 +204,34 @@
 
   .title {
     height: 30px;
+  }
+
+ .resName {
+    font-size: 24pt;
+    font-weight: bold;
+  }
+
+ .row {
+    margin:50px;
+    padding: 30px;
+  }
+  
+ .card-img-top {
+    width:286px;
+    height: 200px;
+  }
+
+   .top {
+   height: 300px;
+ }
+
+ .box {
+    height: 450px;
+    margin-bottom: 30px;
+  }
+
+  #profile {
+    margin-top: 200px;
   }
 </style>
 
