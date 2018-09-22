@@ -52,9 +52,12 @@ module.exports = function(passport, userinfo) {
   });
 
   passport.deserializeUser(function(id, done) {
-    Userinfo.findById(id).then(function(user) {
+    Userinfo.findOne({
+      where: {
+        id: id
+      }
+    }).then(function(user) {
       if (user) {
-        
         done(null, user.get());
       } else {
         done(user.errors, null);
