@@ -85,6 +85,7 @@ exports.profile = function(req, res) {
 };
 
 
+
 exports.aboutus = function(req, res) {
   res.render("aboutus");
 };

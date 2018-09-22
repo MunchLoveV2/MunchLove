@@ -28,6 +28,8 @@ module.exports = function(app, passport) {
   );
   app.get("*", authController.error);
 
+  // app.delete("/api/favorites")
+
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
       return next();

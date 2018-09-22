@@ -35,7 +35,7 @@
         <h5 class="pageTitle">Welcome Back!</h5>
         <h5 class="pageTitle">Here is a list of your favorite Munches!</h5>
       </div>
-      <div class = "col-4 offset-4 center">
+      <div class = "col-4 offset-4 center work">
         <form class="clearfix mb-4 text-center" action="GET">
           <div class="form-group">
             <input type="text" id="search" class="form-control searchSize" aria-describedby="search" placeholder="Search Another Location?">
@@ -47,15 +47,16 @@
       <div class="row">
         {{#each businesses}}
          
-          <div class="col-4" id= "temporaryfontcolor">
+          <div class="col-sm-8 col-md-6 col-lg-4" id= "temporaryfontcolor">
             <div class="card box" style="width: 18rem;">
               <img class="card-img-top" src={{favoritesImage}} alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title resName">Name: {{favoritesName}}</h5>
                 <h4 class="card-title">Rating: {{favoritesRating}}</h4>
                 <h4 class="card-title">Phone Number: {{favoritesPhone}}</h4>
+                <a class="btn btn-danger delete">Delete</a>
               </div>
-            </div>
+            </div> 
           </div>
 
         {{/each}}
@@ -91,6 +92,16 @@
 		background-position: center center;
 		/* background: radial-gradient(circle, white, black); */
 	}
+
+  .card-img-top {
+    width: 100%;
+    height: 22rem;
+  }
+
+  .card-body {
+    width: 100%;
+    height: 14rem;
+  }
 
 	.navbar {
 		background: rgba(0,0,0,0.7);
@@ -193,7 +204,10 @@
 
   .title {
     height: 30px;
+    display: inline-block;
   }
+
+  
 </style>
 
 <script type="text/javascript">

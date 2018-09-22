@@ -9,8 +9,20 @@ module.exports = function(app, userfavorite) {
     app.post("/api/favorites", function(req, res) {
         userfavorite.create(req.body).then(function(favorite) {
             res.json(favorite);
+            console.log(req.body);
         });
     });
+
+    // app.delete("/api/favorites", function(req, res){
+    //     userfavorite.destroy({
+    //         where: {
+    //             id: 
+    //         }
+    //     }).then(function(favorite){
+    //         res.json(favorite);
+    //     });
+    // });
+
 
 
 };
