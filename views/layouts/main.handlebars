@@ -47,6 +47,13 @@
     });
   })
 
+    $(".searchbutton_noUser").click(function(){
+    event.preventDefault(); 
+    var url = new URL(window.location);
+    var location = $("#search").val();
+    window.location ='/searchresults1/' + location;
+  })
+
 
     // this clickHandler puts user's favorite restaurants into the userFavorites table (via Sequelize)
    $(".details").click(function(){
