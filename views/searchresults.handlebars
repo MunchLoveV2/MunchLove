@@ -30,9 +30,14 @@
 
 <div id="home ">
   <div class="container opacity">
-    <div class ="row margin">
-      <div class = "col-4 offset-4 center top">
-        <form class="clearfix mb-4" action="GET">
+    <div class ="row margin top">
+
+      <div class = "col-10 offset-1 text-center title">
+        <h4 class="pageTitle">These are the munchies in your area!</h4>
+      </div>
+
+      <div class = "col-4 offset-4 center searchTop">
+        <form class="clearfix mb-4 text-center" action="GET">
           <div class="form-group">
             <input type="text" id="search" class="form-control searchSize" aria-describedby="search" placeholder="Search Another Location?">
           </div>
@@ -40,6 +45,8 @@
         </form>
       </div>
     </div>
+
+
       <div class="row">
         {{#each businesses}}
           <div class="col-4" id= "temporaryfontcolor">
@@ -135,7 +142,7 @@
 	}
 
 	#search {		
-		margin-top: 200px;
+		margin-top: 50px;
 	}
 
 	#searchbutton {	
@@ -175,12 +182,9 @@
     font-family: 'Amatic SC', cursive;
   }
 
-  .margin {
-    margin-top: 200px;
-  }
-
   .searchSize {
     font-size: 20pt;
+    margin-top: 0px;
   }
 
   .row {
@@ -203,18 +207,23 @@
     margin-bottom: 30px;
   }
 
-  {{!-- .top {
-    height: 100px;
-    margin-top: 0px;
-    
-  } --}}
+ .top {
+   height: 250px;
+ }
 
 nav.shrink {
     background-color: rgba(0,0,0,1)
   }
+
+.pageTitle {
+    font-size: 4em;
+  }
+
 </style>
 
-{{!-- <script
+
+
+<script
   src="https://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script> --}}
